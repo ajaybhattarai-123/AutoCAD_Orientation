@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoCAD Professional Training | Gyan Hub</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #f57f20;
+            /* Gyan Hub Orange */
+            --dark: #212529;
+            /* Dark Text */
+            --light: #ffffff;
+            /* White Background */
+            --gray: #f8f9fa;
+            /* Light Gray Section Background */
+            --footer-bg: #111;
+            /* Dark Footer */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --gradient: linear-gradient(135deg, #f57f20 0%, #ff5722 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.5)), url('1.png') center/cover;
+            color: white;
+            padding-top: 60px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            line-height: 1.1;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary);
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: var(--gradient);
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(245, 127, 32, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+            border: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(245, 127, 32, 0.6);
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 8%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Advantages Cards */
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            border-top: 5px solid transparent;
+            /* Prepare for hover effect */
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: rgba(245, 127, 32, 0.05);
+            transition: 0.4s;
+            z-index: -1;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            border-top-color: var(--primary);
+        }
+
+        .card:hover::before {
+            height: 100%;
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(245, 127, 32, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+            color: var(--primary);
+            transition: 0.3s;
+        }
+
+        .card:hover .card-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotateY(360deg);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Trainer Section */
+        .trainer-section {
+            background-color: var(--gray);
+        }
+
+        .trainer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .trainer-img {
+            text-align: right;
+        }
+
+        .trainer-img img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border: 5px solid white;
+        }
+
+        @media (max-width: 768px) {
+            .trainer-img {
+                text-align: center;
+            }
+        }
+
+        .trainer-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-weight: 800;
+        }
+
+        .trainer-info h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .trainer-info p {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .highlight-quote {
+            border-left: 4px solid var(--primary);
+            padding-left: 20px;
+            margin-top: 30px;
+            font-style: italic;
+            color: #444;
+            font-weight: 500;
+        }
+
+        /* Roadmap Accordion */
+        .roadmap-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .week-box {
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--primary);
+        }
+
+        .week-header {
+            padding: 20px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.15rem;
+            background: white;
+            transition: background 0.3s;
+        }
+
+        .week-header:hover {
+            background: #fefefe;
+        }
+
+        .week-header i {
+            transition: transform 0.3s;
+            color: var(--primary);
+        }
+
+        .week-box.active .week-header {
+            background: rgba(245, 127, 32, 0.05);
+        }
+
+        .week-box.active .week-header i {
+            transform: rotate(180deg);
+        }
+
+        .week-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+        }
+
+        .week-box.active .week-content {
+            max-height: 600px;
+            transition: max-height 0.4s ease-in-out;
+        }
+
+        .week-content ul {
+            list-style: none;
+            padding: 20px 30px 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .week-content li {
+            display: flex;
+            align-items: start;
+            margin-bottom: 12px;
+            color: #555;
+        }
+
+        .week-content li i {
+            color: var(--primary);
+            margin-right: 15px;
+            margin-top: 5px;
+            font-size: 0.8rem;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            background: white;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .project-img-wrapper {
+            overflow: hidden;
+            height: 250px;
+            position: relative;
+        }
+
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .project-card:hover .project-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .project-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .project-list li {
+            color: #666;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .project-list li::before {
+            content: '•';
+            color: var(--primary);
+            font-size: 1.5rem;
+            line-height: 0;
+            margin-right: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: #aaa;
+            padding: 70px 5% 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-col h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--primary);
+            display: block;
+            margin-top: 10px;
+        }
+
+        .footer-links a {
+            display: block;
+            color: #aaa;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            font-size: 0.9rem;
+        }
+
+        @media(max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .trainer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .highlight-quote {
+                border-left: none;
+                border-top: 4px solid var(--primary);
+                padding-top: 15px;
+                padding-left: 0;
+            }
+
+            section {
+                padding: 70px 5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo" style="display: flex; align-items: center;">
+            <img src="IMAGES/1.png" alt="Gyan Hub Logo" style="height: 45px; margin-right: 12px;">
+            <div>GYAN<span>HUB</span></div>
+        </div>
+        <div class="nav-links">
+            <a href="#about">Why Us</a>
+            <a href="#syllabus">Syllabus</a>
+            <a href="#roadmap">Roadmap</a>
+            <a href="#projects">Projects</a>
+            <a href="#trainer">Trainer</a>
+        </div>
+    </nav>
+
+    <header id="home">
+        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
+            <h1>Unlock Your <span>Design Potential</span></h1>
+            <p>From Fundamental Concepts to Professional Architectural & Structural Drafting. <br>Join the most
+                comprehensive AutoCAD training in Nepal.</p>
+            <a href="#about" class="btn">Explore the Course <i class="fas fa-arrow-down"
+                    style="margin-left: 10px;"></i></a>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="section-header" data-aos="fade-up">
+            <h2>The Gyan Hub Advantage</h2>
+            <p>Why thousands of students embrace our career-focused training curriculum.</p>
+        </div>
+        <div class="advantage-grid">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <h3>Expert Trainers</h3>
+                <p>Training by Er. Ajay Bhattarai from <b>IOE Pulchowk Campus</b>.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-icon"><i class="fas fa-file-contract"></i></div>
+                <h3>Municipal Ready</h3>
+                <p>Master Building By-laws, KMC standards, and Nepal National Building Codes (NBC) for instant permit
+                    approvals.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-icon"><i class="fas fa-cubes"></i></div>
+                <h3>3D & AI Integration</h3>
+                <p>Intro to Revit, 3D Visualization, and using modern AI tools for Civil Engineering efficiency.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="400">
+                <div class="card-icon"><i class="fas fa-video"></i></div>
+                <h3>Lifetime Support</h3>
+                <p>Get recorded sessions, daily assignments, and all necessary training materials for lifetime access.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Syllabus Section -->
+    <section id="syllabus" style="background-color: #fff;">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Detailed Course Syllabus</h2>
+            <p>Review the comprehensive curriculum designed for your success.</p>
+        </div>
+        <div style="max-width: 900px; margin: 0 auto; text-align: center;" data-aos="fade-up">
+            <a href="PDF/AUTOCAD_SYLLABUS.pdf" target="_blank" class="btn"
+                style="display: inline-flex; align-items: center; padding: 15px 40px; font-size: 1.2rem;">
+                <i class="fas fa-file-pdf" style="margin-right: 15px;"></i> View Course Syllabus
+            </a>
+        </div>
+    </section>
+
+    <section id="roadmap" style="background-color: #fcfcfc;">
+        <div class="section-header" data-aos="fade-up">
+            <h2>26-Day Interactive Roadmap</h2>
+            <p>A step-by-step journey from beginner to professional designer.</p>
+        </div>
+        <div class="roadmap-container">
+            <!-- Week 1 -->
+            <div class="week-box active" data-aos="fade-left">
+                <div class="week-header" onclick="toggleWeek(this)">
+                    <div>Day 1-4: Foundation & Basic Tools</div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="week-content">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Introduction to AutoCAD Interface & Setup</li>
+                        <li><i class="fas fa-check-circle"></i> Unit Setup, Limits, and Basic Shapes (Line, Circle)</li>
+                        <li><i class="fas fa-check-circle"></i> Modify Tools: Offset, Trim, Fillet</li>
+                        <li><i class="fas fa-check-circle"></i> Annotation: Text, Dimensions, & Leader</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="week-box" data-aos="fade-left" data-aos-delay="100">
+                <div class="week-header" onclick="toggleWeek(this)">
+                    <div>Day 5-11: Professional Management</div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="week-content">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Layer Management & Properties (Linetypes/Colors)</li>
+                        <li><i class="fas fa-check-circle"></i> Using Blocks & Groups for Efficiency</li>
+                        <li><i class="fas fa-check-circle"></i> Measuring Tools, Calculating Areas and Distances, Quick
+                            Select, and Drawing Recovery.
+                        </li>
+                        <li><i class="fas fa-check-circle"></i> Professional Printing (Scale to Fit, Layouts)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="week-box" data-aos="fade-left" data-aos-delay="200">
+                <div class="week-header" onclick="toggleWeek(this)">
+                    <div>Day 12-20: Architectural Design Project</div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="week-content">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Complete Understanding of Building Bye-laws and Building
+                            Codes</li>
+                        <li><i class="fas fa-check-circle"></i> Creating Detailed Building Sections</li>
+                        <li><i class="fas fa-check-circle"></i> Site Plans & Location Maps</li>
+                        <li><i class="fas fa-check-circle"></i> Developing a Complete Floor Plan (Single Story)</li>
+                        <li><i class="fas fa-check-circle"></i> Opening Schedules (Doors/Windows Details)</li>
+                        <li><i class="fas fa-check-circle"></i> Designing Exterior Elevations (Front/Side)</li>
+
+
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="week-box" data-aos="fade-left" data-aos-delay="300">
+                <div class="week-header" onclick="toggleWeek(this)">
+                    <div>Day 21-26: Structural & Advanced Content</div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="week-content">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Structural Layouts: Foundation, Columns, Beams</li>
+                        <li><i class="fas fa-check-circle"></i> Reinforcement Details, Slab & Staircase Design</li>
+                        <li><i class="fas fa-check-circle"></i> Detailed Footing & Foundation Plans</li>
+                        <li><i class="fas fa-check-circle"></i> Final Project Presentation & Certification</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Exclusive Industry Skills Section -->
+    <section id="tools" style="background: linear-gradient(to bottom, #fff, #fefefe);">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Premium Bonus Courses</h2>
+            <p>Beyond standard AutoCAD: Master these extra high-value modules included in your training.</p>
+        </div>
+        <div class="advantage-grid">
+
+            <!-- AI For Civil Engineers -->
+            <div class="card" data-aos="zoom-in" data-aos-delay="100" style="border-top-color: #673ab7;">
+                <div class="card-icon" style="color: #673ab7; background: rgba(103, 58, 183, 0.1);">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>AI for Civil Engineers</h3>
+                <p><strong>Future-Proof Your Career:</strong> Learn various AI tools essentially required for civil
+                    engineers to automate tasks, optimize designs, and increase productivity.</p>
+            </div>
+
+            <!-- Google Earth Pro -->
+            <div class="card" data-aos="zoom-in" data-aos-delay="200" style="border-top-color: #2196f3;">
+                <div class="card-icon" style="color: #2196f3; background: rgba(33, 150, 243, 0.1);">
+                    <i class="fas fa-globe-americas"></i>
+                </div>
+                <h3>Google Earth Pro</h3>
+                <p><strong>Survey & Analysis:</strong> Master this software to perform various virtual surveys, site
+                    analysis, and integrate geographic data directly into your engineering tasks.</p>
+            </div>
+
+            <!-- SW-DTM -->
+            <div class="card" data-aos="zoom-in" data-aos-delay="300" style="border-top-color: #4caf50;">
+                <div class="card-icon" style="color: #4caf50; background: rgba(76, 175, 80, 0.1);">
+                    <i class="fas fa-mountain"></i>
+                </div>
+                <h3>SW-DTM</h3>
+                <p><strong>Advanced Terrain Modeling:</strong> Learn Points Import, Contour Making, Alignment Creation,
+                    and precise Cut/Fill Calculations for road and infrastructure projects.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NEW: Regulatory Mastery Section (Restoring By-Laws prominence) -->
+    <section id="regulations" style="background-color: #fff4e5;">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Mastering Building By-Laws & Codes</h2>
+            <p>We don't just teach software; we teach you how to get your drawings approved.</p>
+        </div>
+        <div class="advantage-grid">
+            <div class="card" data-aos="fade-up" style="border-top-color: #d32f2f;">
+                <div class="card-icon" style="color: #d32f2f; background: rgba(211, 47, 47, 0.1);"><i
+                        class="fas fa-balance-scale"></i></div>
+                <h3>Regulatory Compliance</h3>
+                <ul style="list-style: none; color: #666; font-size: 0.95rem; line-height: 1.8;">
+                    <li><i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Local Level
+                        By-Laws</li>
+                    <li><i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Nepal National
+                        Building Codes (NBC)</li>
+                    <li><i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Building Setback
+                        Regulations</li>
+                    <li><i class="fas fa-check" style="color: var(--primary); margin-right: 8px;"></i> Seismic Design
+                        Principles</li>
+                </ul>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100" style="border-top-color: #d32f2f;">
+                <div class="card-icon" style="color: #d32f2f; background: rgba(211, 47, 47, 0.1);"><i
+                        class="fas fa-file-signature"></i></div>
+                <h3>Municipal Format Drawings</h3>
+                <p>Learn the exact layering standards, line weights, and sheet formats required for municipal submission
+                    in Nepal.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: Installation Resources -->
+    <section id="resources" style="background: #212529; color: white;">
+        <div class="section-header" data-aos="fade-up">
+            <h2 style="color: var(--primary);">Student Resources</h2>
+            <p style="color: #bbb;">Essential links and materials for your daily learning.</p>
+        </div>
+
+        <!-- Setup & Softwares -->
+        <h3
+            style="text-align: center; color: white; margin-bottom: 25px; font-weight: 400; font-size: 1.2rem; opacity: 0.8;">
+            Software & Setup</h3>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 40px;"
+            data-aos="fade-up">
+            <a href="https://drive.google.com/file/d/1QVrYHb_U3I7Az6Mb_ovIAQMz5w2ex5L_/view?usp=drive_link"
+                target="_blank" class="btn"
+                style="background: white; color: var(--dark); display: flex; align-items: center; min-width: 260px; justify-content: center; transition: 0.3s; box-shadow: 0 4px 15px rgba(255,255,255,0.1);">
+                <i class="fab fa-google-drive" style="font-size: 1.5rem; margin-right: 15px; color: #0F9D58;"></i>
+                Download Software
+            </a>
+            <a href="https://youtu.be/CmQcMQsfKKg?si=N65SBhF6VuDvpzff" target="_blank" class="btn"
+                style="background: #FF0000; color: white; display: flex; align-items: center; min-width: 260px; justify-content: center; box-shadow: 0 4px 15px rgba(255,0,0,0.3);">
+                <i class="fab fa-youtube" style="font-size: 1.5rem; margin-right: 15px;"></i> Installation Guide
+            </a>
+        </div>
+
+        <!-- Course Content -->
+        <h3
+            style="text-align: center; color: white; margin-bottom: 25px; font-weight: 400; font-size: 1.2rem; opacity: 0.8; border-top: 1px solid #444; padding-top: 30px; width: 60%; margin-left: auto; margin-right: auto;">
+            Course Materials</h3>
+        <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;" data-aos="fade-up"
+            data-aos-delay="100">
+            <a href="https://drive.google.com/drive/folders/1WjP1m5dsWpnslqKRU5UzGHZxKcmADQIT?usp=drive_link"
+                target="_blank" class="btn"
+                style="background: #4285F4; color: white; display: flex; align-items: center; min-width: 240px; justify-content: center;">
+                <i class="fas fa-folder-open" style="font-size: 1.5rem; margin-right: 15px;"></i> Class Materials
+            </a>
+            <a href="https://classroom.google.com/u/3/c/NzgwOTYxMjc3NjE3" target="_blank" class="btn"
+                style="background: #F7B529; color: var(--dark); display: flex; align-items: center; min-width: 240px; justify-content: center;">
+                <i class="fas fa-chalkboard-user" style="font-size: 1.5rem; margin-right: 15px;"></i> Classroom Access
+            </a>
+            <a href="https://ajaybhattarai-123.github.io/" target="_blank" class="btn"
+                style="background: #24292e; color: white; display: flex; align-items: center; min-width: 240px; justify-content: center;">
+                <i class="fab fa-github" style="font-size: 1.5rem; margin-right: 15px;"></i> Lisp File Source
+            </a>
+        </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Real-World Projects</h2>
+            <p>Build a professional portfolio during your training.</p>
+        </div>
+        <div class="project-grid">
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+                <div class="project-img-wrapper">
+                    <img src="IMAGES/3.png" alt="Architectural Plan">
+                </div>
+                <div class="project-info">
+                    <h3>Architectural Portfolio</h3>
+                    <ul class="project-list">
+                        <li>Floor & Roof Plans</li>
+                        <li>Elevations & Sections</li>
+                        <li>Site & Location Maps</li>
+                        <li>Opening Schedules</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="project-img-wrapper">
+                    <img src="IMAGES/4.png" alt="Structural Details">
+                </div>
+                <div class="project-info">
+                    <h3>Structural Engineering</h3>
+                    <ul class="project-list">
+                        <li>Foundation design and layouts</li>
+                        <li>Column & Beam Details</li>
+                        <li>Slab and Staircase details</li>
+                        <li>Title Block and Printing in Scale</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trainer" class="trainer-section">
+        <div class="trainer-grid">
+            <div class="trainer-img" data-aos="fade-right">
+                <img src="IMAGES/2.png" alt="Er. Ajay Bhattarai">
+            </div>
+            <div class="trainer-info" data-aos="fade-left">
+                <h2>Meet Your Mentor</h2>
+                <h3>Er. Ajay Bhattarai</h3>
+                <p style="font-size: 1.2rem; color: var(--primary); font-weight: 600; margin-bottom: 20px;">
+                    Civil Engineer | Software Trainer | Researcher
+                </p>
+                <div class="highlight-quote">"Excellence in engineering, choose the best, achieve the best."</div>
+
+                <div style="margin-top: 25px; display: flex; gap: 15px;">
+                    <a href="https://ajaybhattarai-123.github.io/Personal-website/" target="_blank"
+                        style="color: var(--primary); font-size: 1.5rem;"><i class="fas fa-globe"></i></a>
+                    <a href="https://www.youtube.com/@ajaybhattarai360" target="_blank"
+                        style="color: #FF0000; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                    <a href="https://ajaybhattarai-123.github.io/" target="_blank"
+                        style="color: #333; font-size: 1.5rem;"><i class="fab fa-github"></i></a>
+                </div>
+                <a href="#contact" class="btn" style="margin-top: 20px;">Ask a Question</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Gyan Hub Nepal</h3>
+                <p>Excellence in Technical Education. We empower engineers and designers with industry-ready skills.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p style="color:white; font-size: 1.1rem; margin-bottom: 15px;"><i class="fas fa-phone-alt"
+                        style="color:var(--primary); margin-right:10px;"></i> +977 9813111857</p>
+                <p><i class="fas fa-map-marker-alt" style="color:var(--primary); margin-right:10px;"></i> Gatthaghar,
+                    Bhaktapur</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <div class="footer-links">
+                    <a href="#about">About Course</a>
+                    <a href="#projects">Project Gallery</a>
+                    <a href="http://www.gyanhub.com.np" target="_blank">Official Website</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gyan Hub Nepal. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- AOS Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+
+        function toggleWeek(header) {
+            const box = header.parentElement;
+
+            // Optional: Close others
+            // document.querySelectorAll('.week-box').forEach(b => {
+            //     if(b !== box) b.classList.remove('active');
+            // });
+
+            box.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>
